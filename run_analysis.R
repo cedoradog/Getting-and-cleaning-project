@@ -9,7 +9,7 @@ library(reshape2)
 #setwd("d:/.../DataScience/GettingData")
 
 #We will assume that unzipped data directory "UCI HAR Dataset" are at the 
-#same level of this script, wher the results will be written.
+#working directory, where the results will be written.
 #Create a directory "data"
 #if(!file.exists("UCI HAR Dataset")) {
 #  dir.create("UCI HAR Dataset")}
@@ -96,7 +96,10 @@ write.csv(dataset, file="./means_and_stds.csv", row.names=F)
 moltenData <- melt(dataset, id=c("subject", "activity"))
 
 #Cast the molten dataset by subject and activity, summarinzing w/ mean function
-summary <- dcast(moltenData, subject + activity ~ variable, mean)
+summaryData <- dcast(moltenData, subject + activity ~ variable, mean)
 
 #write the casted dataset to a new file
-write.csv(summary, file="./tidy_dataset.txt", row.names=F)
+write.csv(summaryData, file="./tidy_dataset.txt", row.names=F)
+
+#Clear the workspace
+rm(dataset, summaryData)
