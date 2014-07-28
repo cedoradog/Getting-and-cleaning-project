@@ -51,12 +51,12 @@ activitiesTrainData <- read.table(activitiesTrainFile, sep=" ")
 featuresTestData <- read.fwf(featuresTestFile, widths=widths)
 featuresTrainData <- read.fwf(featuresTrainFile, widths=widths)
 
-#Merging the original datasets
+#1. Merging the original datasets
 activityCode <- rbind(activitiesTestData, activitiesTrainData)
 subjectData <- rbind(subjectTestData, subjectTrainData)
 featuresData <- rbind(featuresTestData, featuresTrainData)
 
-#Variables to keep from features dataset
+#2. Variables to keep from features dataset
 meanIndex = grep("mean\\(", featuresLabels$V2)
 stdIndex= grep("std\\(", featuresLabels$V2)
 index = sort(union(meanIndex, stdIndex))
@@ -66,15 +66,15 @@ featuresToUse <- featuresData[, index]
 featuresLabels$V2 <- gsub("[\\(\\)]", "", featuresLabels$V2)
 featuresLabels$V2 <- gsub("[-,]", "_", featuresLabels$V2)
 
-#Transform activity codes in activity names
+#3. Transform activity codes in activity names
 names(activityCode) <- "activityCode"
 names(activityLabels) <- c("activityCode", "activity")
 activityData <- join(activityCode, activityLabels, by="activityCode")
 
-#Final dataset
+#First tidy dataset
 dataset <- cbind(subjectData, activityData$activity, featuresToUse)
 
-#Label the dataset w/ descriptive names
+#4. Label the dataset w/ descriptive names
 names(dataset) <- c("subject", "activity", featuresLabels[index, 2])
 
 #Transform the subject variable into a factor
@@ -89,7 +89,7 @@ rm(activityData, activitiesTestData, activitiesTrainData,
 rm(featuresData, featuresToUse, featuresTestData, featuresTrainData, 
    featureLabelsFile, featuresTestFile, featuresTrainFile, featuresLabels)
 
-#write the dataset to a new file
+#write the first dataset to a new .csv file
 write.csv(dataset, file="./means_and_stds.csv", row.names=F)
 
 #Melt the dataset by subject and activity
@@ -98,7 +98,7 @@ moltenData <- melt(dataset, id=c("subject", "activity"))
 #Cast the molten dataset by subject and activity, summarinzing w/ mean function
 summaryData <- dcast(moltenData, subject + activity ~ variable, mean)
 
-#write the casted dataset to a new file
+#5. write the final tidy dataset to a new .csv file
 write.csv(summaryData, file="./tidy_dataset.txt", row.names=F)
 
 #Clear the workspace
