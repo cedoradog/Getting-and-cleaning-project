@@ -55,7 +55,7 @@ These signals were used to estimate variables of the feature vector for each pat
 From these variables, the estimated mean and standard deviation was retained as indicated by the sufix "mean" and "std" in the name of each variable.
 The data was then molten using subject and activity as identifiers and then casted to take the mean value of every retained variable, grouped by subject and activity (mean of mean values, as indicated by the "mean" sufix, and mean of standard deviations as indicated by the "std" sufix).
 
-##Notes: 
+##Notes
 
 The following excerpt was extracted from *README.txt* downloaded and unzipped from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
 
