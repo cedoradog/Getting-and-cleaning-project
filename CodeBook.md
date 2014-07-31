@@ -22,9 +22,9 @@ For each record in the dataset it is provided:
 ##Information of the reported *tidy_dataset.txt*.
 
 The resultant *tidy_dataset.txt* is a comma-separated-values file with the following variables:
-- subject: numeric factor from 1 to 30 indicating the voluntier. Levels: 1..30
-- activity: character string indicating the activity performed by the voluntier. Levels: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING.
-- features: mean values of the mean and standard deviations of 17 quantitative variables as described above (8 of them  with X, Y and Z components, adding up to 66 features), grouped by subject and activity.
+- **subject**: numeric factor from 1 to 30 indicating the voluntier. Levels: 1..30
+- **activity**: character string indicating the activity performed by the voluntier. Levels: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING.
+- **features**: mean values of the mean and standard deviations of 17 quantitative variables as described above (8 of them  with X, Y and Z components, adding up to 66 features), grouped by subject and activity.
 
 ###Features
 The following excerpt was extracted from *feature_info.txt* downloaded and unzipped from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip.
